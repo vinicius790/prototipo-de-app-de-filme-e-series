@@ -1,0 +1,9 @@
+.git
+.github
+node_modules
+angular
+tests
+e2e
+scripts
+*.md
+*.ps1

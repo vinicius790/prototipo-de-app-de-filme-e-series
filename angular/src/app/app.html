@@ -1,0 +1,42 @@
+<a class="skip-link" href="#conteudo" (click)="skipToContent($event)">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <a class="brand" routerLink="/">Movie App</a>
+  <nav aria-label="Principal">
+    <ul role="list">
+      <li>
+        <a
+          routerLink="/"
+          routerLinkActive
+          ariaCurrentWhenActive="page"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Início</a
+        >
+      </li>
+      <li><a routerLink="/filmes" routerLinkActive ariaCurrentWhenActive="page">Filmes</a></li>
+      <li><a routerLink="/series" routerLinkActive ariaCurrentWhenActive="page">Séries</a></li>
+      <li>
+        <a routerLink="/favoritos" routerLinkActive ariaCurrentWhenActive="page">Favoritos</a>
+      </li>
+      <li><a routerLink="/listas" routerLinkActive ariaCurrentWhenActive="page">Listas</a></li>
+      <li>
+        <a routerLink="/recomendacoes" routerLinkActive ariaCurrentWhenActive="page">Para você</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Fica sempre no DOM: uma região role="status" precisa existir antes de o texto mudar. -->
+<p class="connection" role="status" [hidden]="!offline.status()">{{ offline.status() }}</p>
+
+<main #conteudo id="conteudo" tabindex="-1">
+  <router-outlet />
+</main>
+
+<footer class="site-footer">
+  <p>
+    Este produto usa a API do TMDB, mas não é endossado nem certificado pelo
+    <a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer">TMDB</a>.
+  </p>
+  <p><a routerLink="/chave">Configurar a chave da API</a></p>
+</footer>

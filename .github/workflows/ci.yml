@@ -1,0 +1,66 @@
+name: CI - Verificação Vanilla e Angular
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  web-vanilla:
+    name: Versão JavaScript Puro (Sintaxe e Testes)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Verificar sintaxe dos scripts Node e Vanilla
+        run: |
+          node --check scripts/serve.mjs
+          node --check tests/project.test.js
+
+      # Sem dependências externas: a suíte roda 100% com o test runner nativo do Node.
+      - name: Executar suíte de testes (regras, offline, componentes e segurança)
+        run: npm test
+
+  angular:
+    name: Versão Angular (Instalação, Testes e Build)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: angular
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: angular/package-lock.json
+
+      - name: Instalar dependências de forma reproduzível
+        run: npm ci
+
+      - name: Auditoria de segurança de pacotes
+        run: npm audit --audit-level=high || true
+
+      - name: Executar testes unitários do Angular (Vitest)
+        run: npm test
+
+      - name: Compilar build de produção (ng build + precache)
+        run: npm run build

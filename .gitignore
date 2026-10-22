@@ -1,0 +1,31 @@
+# Configuração real com a chave do TMDB (os modelos *.example.* é que são versionados)
+web-vanilla/config.js
+angular/public/config.json
+.env
+.env.*
+!.env.example
+!web-vanilla/config.example.js
+!angular/public/config.example.json
+*.key
+*.pem
+
+# Dependências e artefatos de build
+node_modules/
+dist/
+.angular/
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Editores e sistema
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+
+# Arquivos locais da reorganização da pasta
+BACKUP_ORIGINAL_antes_de_organizar.zip
+LOG_REORGANIZACAO.txt

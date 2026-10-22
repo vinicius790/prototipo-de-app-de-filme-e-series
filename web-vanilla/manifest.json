@@ -1,0 +1,38 @@
+{
+  "id": "movie-app-pwa",
+  "name": "Movie App · Filmes e Séries",
+  "short_name": "Movie App",
+  "description": "Catálogo completo de filmes e séries com recomendações inteligentes, watchlists, métricas de tempo assistido, modo cinema, modo offline e backup JSON.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#12142b",
+  "theme_color": "#ff6f61",
+  "categories": ["entertainment", "movies"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23ff6f61'/%3E%3Cpath d='M12 9v14l11-7z' fill='%23fff'/%3E%3C/svg%3E",
+      "sizes": "32x32 192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Filmes Populares",
+      "url": "#/filmes",
+      "description": "Explorar filmes populares do catálogo"
+    },
+    {
+      "name": "Séries",
+      "url": "#/series",
+      "description": "Explorar séries em alta"
+    },
+    {
+      "name": "Tempo Assistido",
+      "url": "#/tempo-assistido",
+      "description": "Ver estatísticas e métricas de tempo assistido"
+    }
+  ]
+}
